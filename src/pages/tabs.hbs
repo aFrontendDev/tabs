@@ -6,7 +6,67 @@ includeTota11y: true
 {{#extend "layout-a"}}
 
 	{{#content "region-a"}}
-		<h2 class="block block-size-a">Tabs</h2>
+		<ul class="tabs block block-size-a" role="tablist" data-tabs-target="#tab_panels_a">
+			<li>
+				<a class="tab" role="tab" aria-controls="tab_panel_a" href="#tab_panel_a">
+					Tab A
+				</a>
+			</li>
+			<li>
+				<a class="tab" role="tab" aria-controls="tab_panel_b" href="#tab_panel_b">
+					Tab B
+				</a>
+			</li>
+			<li>
+				<a class="tab" role="tab" aria-controls="tab_panel_c" href="#tab_panel_c">
+					Tab C
+				</a>
+			</li>
+		</ul>
+
+		<div class="tab-panels block block-size-a" id="tab_panels_a">
+			<section class="tab-panel" role="tabpanel" id="tab_panel_a">
+				<header class="tab-panel-header">
+					<h2 class="tab-panel-title">
+						<a class="tab" role="tab" aria-controls="tab_panel_a" href="#tab_panel_a">
+							Tab A
+						</a>
+					</h2>
+				</header>
+				<div class="tab-panel-body">
+					<p>Tab A content</p>
+					<img src="https://www.placecage.com/c/800/450" alt="That crazy guy" />
+				</div>
+			</section>
+
+			<section class="tab-panel" role="tabpanel" id="tab_panel_b">
+				<header class="tab-panel-header">
+					<h2 class="tab-panel-title">
+						<a class="tab" role="tab" aria-controls="tab_panel_b" href="#tab_panel_b">
+							Tab B
+						</a>
+					</h2>
+				</header>
+				<div class="tab-panel-body">
+					<p>Tab B content</p>
+					<img src="https://www.fillmurray.com/800/450" alt="Mr Murray" />
+				</div>
+			</section>
+
+			<section class="tab-panel" role="tabpanel" id="tab_panel_c">
+				<header class="tab-panel-header">
+					<h2 class="tab-panel-title">
+						<a class="tab" role="tab" aria-controls="tab_panel_c" href="#tab_panel_c">
+							Tab C
+						</a>
+					</h2>
+				</header>
+				<div class="tab-panel-body">
+					<p>Tab C content</p>
+					<img src="http://www.nicenicejpg.com/800/450" alt="The Ice Man" />
+				</div>
+			</section>
+		</div>
 	{{/content}}
 
 {{/extend}}
