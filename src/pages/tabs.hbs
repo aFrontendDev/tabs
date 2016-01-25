@@ -6,7 +6,7 @@ includeTota11y: true
 {{#extend "layout-a"}}
 
 	{{#content "region-a"}}
-		<ul class="tabs block block-size-a" role="tablist" data-tabs-target="#tab_panels_a">
+		<ul class="tab-container block block-size-a" role="tablist" data-tabs-target="#tab_panels_a">
 			<li>
 				<a class="tab" role="tab" aria-controls="tab_panel_a" href="#tab_panel_a">
 					Tab A
@@ -24,8 +24,8 @@ includeTota11y: true
 			</li>
 		</ul>
 
-		<div class="tab-panels block block-size-a" id="tab_panels_a">
-			<section class="tab-panel active" role="tabpanel" id="tab_panel_a">
+		<div class="tab-panel-container block block-size-a" id="tab_panels_a">
+			<section class="tab-panel" role="tabpanel" id="tab_panel_a">
 				<header class="tab-panel-header">
 					<h2 class="tab-panel-title">
 						<a class="tab" role="tab" aria-controls="tab_panel_a" href="#tab_panel_a">
@@ -64,6 +64,70 @@ includeTota11y: true
 				<div class="tab-panel-body">
 					<p>Tab C content</p>
 					<img src="http://www.nicenicejpg.com/800/450" alt="The Ice Man" />
+				</div>
+			</section>
+		</div>
+
+
+
+		<ul class="tab-container block block-size-a" role="tablist" data-tabs-target="#tab_panels_b">
+			<li>
+				<a class="tab" role="tab" aria-controls="tab_panel_d" href="#tab_panel_d">
+					Tab D
+				</a>
+			</li>
+			<li>
+				<a class="tab" role="tab" aria-controls="tab_panel_e" href="#tab_panel_e">
+					Tab E
+				</a>
+			</li>
+			<li>
+				<a class="tab" role="tab" aria-controls="tab_panel_f" href="#tab_panel_f">
+					Tab F
+				</a>
+			</li>
+		</ul>
+
+		<div class="tab-panel-container block block-size-a" id="tab_panels_b">
+			<section class="tab-panel" role="tabpanel" id="tab_panel_d">
+				<header class="tab-panel-header">
+					<h2 class="tab-panel-title">
+						<a class="tab" role="tab" aria-controls="tab_panel_d" href="#tab_panel_d">
+							Tab D
+						</a>
+					</h2>
+				</header>
+				<div class="tab-panel-body">
+					<p>Tab D content</p>
+					<img src="https://www.placecage.com/c/700/450" alt="That crazy guy" />
+				</div>
+			</section>
+
+			<section class="tab-panel" role="tabpanel" id="tab_panel_e">
+				<header class="tab-panel-header">
+					<h2 class="tab-panel-title">
+						<a class="tab" role="tab" aria-controls="tab_panel_e" href="#tab_panel_e">
+							Tab E
+						</a>
+					</h2>
+				</header>
+				<div class="tab-panel-body">
+					<p>Tab E content</p>
+					<img src="https://www.fillmurray.com/700/450" alt="Mr Murray" />
+				</div>
+			</section>
+
+			<section class="tab-panel" role="tabpanel" id="tab_panel_f">
+				<header class="tab-panel-header">
+					<h2 class="tab-panel-title">
+						<a class="tab" role="tab" aria-controls="tab_panel_f" href="#tab_panel_f">
+							Tab F
+						</a>
+					</h2>
+				</header>
+				<div class="tab-panel-body">
+					<p>Tab F content</p>
+					<img src="http://www.nicenicejpg.com/700/450" alt="The Ice Man" />
 				</div>
 			</section>
 		</div>
