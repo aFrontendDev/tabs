@@ -11,9 +11,11 @@ var bb = bb ? bb : {};
 		 */
 		tabs: {
 			// jQuery DOM caching
+			$tabs: null,
 			$tabContainer: null,
 			$panelContainer: null,
 			// CSS selectors
+			tabsSelector: '.tabs',
 			tabContainerSelector: '.tab-container',
 			tabSelector: '.tab',
 			panelContainerSelector: '.tab-panel-container',
@@ -30,16 +32,9 @@ var bb = bb ? bb : {};
 				var self = this;
 
 				// check for tabs on page, return out if not
-				self.$tabContainer = $(self.tabContainerSelector);
-				if (self.$tabContainer.length < 1) {
+				self.$tabs = $(self.tabsSelector);
+				if (self.$tabs.length < 1) {
 					console.log('No tabs on page');
-					return;
-				}
-
-				// check for tab panels on page, return out if not
-				self.$panelContainer = $(self.panelContainerSelector);
-				if (self.$panelContainer.length < 1) {
-					console.log('No tab panel container on page');
 					return;
 				}
 
@@ -57,73 +52,44 @@ var bb = bb ? bb : {};
 			getFirstTab: function() {
 				var self = this;
 
-				self.$tabContainer.each(function() {
+				self.$tabs.each(function() {
 					var $this = $(this);
 					var $tab = $this.find(self.tabSelector);
 					var $firstTab = $tab.first();
 					var href = $firstTab.attr('href');
-					var dataRelatedPanels = $this.data('tabs-target');
-					var $relatedPanel = $(dataRelatedPanels);
 
 					$this.data('first-tab', href);
-					$relatedPanel.data('first-tab', href);
 				});
 			},
 			tabOpen: function(hashVal) {
 				var self = this;
 
-				if (!hashVal) {
-					self.$panelContainer.each(function() {
-						var $this = $(this);
-						var $panels = $this.find(self.panelSelector);
-						var dataFirstPanel = $this.data('first-tab');
-						var $firstPanel = $this.find(dataFirstPanel);
-
-						$panels.removeClass(self.activeClass);
-						$firstPanel.addClass(self.activeClass);
-					});
-
-					self.$tabContainer.each(function() {
-						var $this = $(this);
-						var $tab = $this.find(self.tabSelector);
-						var dataFirstTab = $this.data('first-tab');
-						var $firstTab = $this.find(dataFirstTab);
-
-						$tab.removeClass(self.activeClass);
-						$firstTab.addClass(self.activeClass);
-					});
-				} else {
+				if (hashVal) {
 					var $activePanel = $(hashVal);
-					var $activeTab = $('a[href' + hashVal + ']');
-
-					if ($activePanel && $activePanel.length > 0) {
-						var $activePanelContainer = $activePanel.closest(self.panelContainerSelector);
-					}
-
-					if ($activeTab && $activeTab.length > 0) {
-						var $activeTabContainer = $activeTab.closest(self.tabContainerSelector);
-					}
-
-					self.$panelContainer.each(function() {
-						var $this = $(this);
-						var $panels = $this.find(self.panelSelector);
-						var dataFirstPanel = $this.data('first-tab');
-						var $firstPanel = $this.find(dataFirstPanel);
-
-						$panels.removeClass(self.activeClass);
-						$firstPanel.addClass(self.activeClass);
-					});
-
-					self.$tabContainer.each(function() {
-						var $this = $(this);
-						var $tab = $this.find(self.tabSelector);
-						var dataFirstTab = $this.data('first-tab');
-						var $firstTab = $this.find(dataFirstTab);
-
-						$tab.removeClass(self.activeClass);
-						$firstTab.addClass(self.activeClass);
-					});
+					var $activeTab = $('a[href="' + hashVal + '"]');
+					var $tabParent = $activePanel.closest(self.tabsSelector);
+					$tabParent.addClass('opened');
 				}
+
+				self.$tabs.each(function() {
+					var $this = $(this);
+					var $panels = $this.find(self.panelSelector);
+					var $tab = $this.find(self.tabSelector);
+					$panels.removeClass(self.activeClass);
+					$tab.removeClass(self.activeClass);
+
+					if ($this.hasClass('opened')) {
+						$activePanel.addClass(self.activeClass);
+						$activeTab.addClass(self.activeClass);
+					} else {
+						var dataFirstTab = $this.data('first-tab');
+						var $firstPanel = $this.find(dataFirstTab);
+						var $firstTab = $this.find('a[href="' + dataFirstTab + '"]');
+
+						$firstPanel.addClass(self.activeClass);
+						$firstTab.addClass(self.activeClass);
+					}
+				});
 			}
 		}
 	});

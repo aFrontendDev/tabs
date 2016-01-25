@@ -6,6 +6,7 @@ includeTota11y: true
 {{#extend "layout-a"}}
 
 	{{#content "region-a"}}
+	<div class="tabs">
 		<ul class="tab-container block block-size-a" role="tablist" data-tabs-target="#tab_panels_a">
 			<li>
 				<a class="tab" role="tab" aria-controls="tab_panel_a" href="#tab_panel_a">
@@ -67,9 +68,9 @@ includeTota11y: true
 				</div>
 			</section>
 		</div>
+	</div>
 
-
-
+	<div class="tabs">
 		<ul class="tab-container block block-size-a" role="tablist" data-tabs-target="#tab_panels_b">
 			<li>
 				<a class="tab" role="tab" aria-controls="tab_panel_d" href="#tab_panel_d">
@@ -131,6 +132,7 @@ includeTota11y: true
 				</div>
 			</section>
 		</div>
+	</div>
 	{{/content}}
 
 {{/extend}}

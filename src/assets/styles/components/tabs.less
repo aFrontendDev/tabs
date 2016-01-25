@@ -1,6 +1,7 @@
 //tabs.less
 
 .tab-container {
+	.list-unstyled;
 	display: none;
 
 	@media @BPD {
@@ -9,7 +10,12 @@
 }
 
 .tab {
+	color: @color-text;
+	text-decoration: none;
 
+	&.active {
+		text-decoration: underline;
+	}
 }
 
 .tab-panel-container {
