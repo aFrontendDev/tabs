@@ -3,29 +3,58 @@
 .tab-container {
 	.list-unstyled;
 	display: none;
+	overflow: hidden;
 
 	@media @BPD {
 		display: block;
 	}
+
+	li {
+		float: left;
+	}
 }
 
 .tab {
-	color: @color-text;
+	display: block;
+	position: relative;
+	z-index: 1;
+	color: #fff;
 	text-decoration: none;
+	padding: 10px 20px;
+	background-color: @brand-black;
+	transition: background 200ms ease-in-out;
+
+	@media @BPD {
+		margin: 0 5px;
+		border-radius: 5px 5px 0 0;
+		box-shadow: 2px 1px 4px rgba(0,0,0,0.6);
+		font-weight: @font-weight-bold;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: @brand-color-b;
+	}
 
 	&.active {
-		text-decoration: underline;
+		background-color: @brand-color-a;
 	}
 }
 
 .tab-panel-container {
 
+	@media @BPD {
+		background-color: @brand-color-a;
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 2px 1px 4px rgba(0,0,0,0.6);
+	}
 }
 
 .tab-panel {
 	float: left;
 	width: 100%;
-	margin: @vr*2 0;
+	margin-bottom: 1px;
 
 	@media @BPD {
 		margin: 0;
@@ -49,12 +78,15 @@
 }
 
 .tab-panel-title {
-
+	margin: 0;
 }
 
 .tab-panel-body {
 	float: left;
 	width: 100%;
+	background-color: @brand-color-a;
+	color: #fff;
+	padding: 10px;
 
 	.js & {
 		display: none;
