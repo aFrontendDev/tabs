@@ -231,14 +231,6 @@ module.exports = function(grunt) {
 				],
 				dest: '<%= config.dist %>/<%= config.distScripts %>/scripts.js'
 			},
-			ieScripts: {
-				src: [
-					// Add 3rd party Bower components here using <%= config.bower %>/**/*.js
-					'<%= config.bower %>/nwmatcher/src/nwmatcher.js',
-					'<%= config.bower %>/selectivizr/selectivizr.js'
-				],
-				dest: '<%= config.dist %>/<%= config.distScripts %>/ie.js'
-			},
 			validation: {
 				src: [
 					// @todo: jquery validation as component - just double check the component is all working first though.
@@ -548,7 +540,6 @@ module.exports = function(grunt) {
 		'jshint',
 		'concat:jquery',
 		'concat:scripts',
-		'concat:ieScripts',
 		'concat:validation',
 		'uglify:scripts',
 		'copy:scripts'
