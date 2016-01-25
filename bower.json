@@ -1,19 +1,10 @@
 {
-  "name": "bb-prototype-website",
+  "name": "tabs",
   "version": "1.0.0",
-  "description": "Default Building Blocks website prototype template.",
-  "homepage": "https://github.com/buildingblocks/bb-prototype-website",
-  "issues": "https://github.com/buildingblocks/bb-prototype-website/issues",
+  "description": "tabs",
+  "homepage": "https://github.com/grumpydev22/tabs",
   "authors": [
-    "Paul Welsh (https://github.com/spacedawwwg)",
-    "John Cashmore (https://github.com/JohnCashmore)",
-    "Daniel Furze (https://github.com/furzeface)",
-    "Andrew 'The Ledge' Blackledge (https://github.com/ablackledge)",
-    "Clara Jordan (https://github.com/czmj)"
-  ],
-  "contributors": [
-    "Phil Lennon (https://github.com/PJL101)",
-    "Peter Broom (https://github.com/PeterBroom)"
+    "Andrew 'The Ledge' Blackledge (https://github.com/ablackledge)"
   ],
   "license": "MIT",
   "ignore": [
