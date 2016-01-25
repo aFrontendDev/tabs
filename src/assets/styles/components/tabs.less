@@ -18,6 +18,18 @@
 
 .tab-panel {
 
+	@media @BPD {
+		float: left;
+		width: 100%;
+
+		.js & {
+			display: none;
+		}
+
+		&.active {
+			display: block;
+		}
+	}
 }
 
 .tab-panel-header {
@@ -33,6 +45,21 @@
 }
 
 .tab-panel-body {
+	float: left;
+	width: 100%;
+
+	.js & {
+		display: none;
+
+		@media @BPD {
+			display: block;
+		}
+	}
+
+	&.active {
+		display: block;
+	}
+
 
 	img {
 		max-width: 100%;
