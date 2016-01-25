@@ -22,8 +22,10 @@ var bb = bb ? bb : {};
 			panelSelector: '.tab-panel',
 			// Classes
 			activeClass: 'active',
+			preSelectedClass: 'pre-selected',
 			// Misc
 			hashVal: '',
+			delayA: null,
 			/**
 			 * Initialises tab module. Caches jQuery DOM objects.
 			 * @function init
@@ -50,6 +52,21 @@ var bb = bb ? bb : {};
 					self.tabOpen();
 				}
 
+				self.bindEvents();
+			},
+			bindEvents: function() {
+				var self = this;
+
+				// click event handler for tab links ** essentially a hack to stop page jump
+				$(self.tabSelector).on('click.tabs', function() {
+					var $this = $(this);
+					var href = $this.attr('href');
+					var $target = $(href);
+					$target.removeAttr('id');
+					$target.attr('data-id', href);
+				});
+
+				//when hash value changes do something
 				window.addEventListener('hashchange', function() {
 					console.log('hash changed');
 					self.hashVal = window.location.hash;
@@ -77,7 +94,7 @@ var bb = bb ? bb : {};
 					var $activePanel = $(hashVal);
 					var $activeTab = $('a[href="' + hashVal + '"]');
 					var $tabParent = $activePanel.closest(self.tabsSelector);
-					$tabParent.addClass('opened');
+					$tabParent.addClass(self.preSelectedClass);
 				}
 
 				self.$tabs.each(function() {
@@ -87,10 +104,10 @@ var bb = bb ? bb : {};
 					$panels.removeClass(self.activeClass);
 					$tab.removeClass(self.activeClass);
 
-					if ($this.hasClass('opened')) {
+					if ($this.hasClass(self.preSelectedClass)) {
 						$activePanel.addClass(self.activeClass);
 						$activeTab.addClass(self.activeClass);
-						$this.removeClass('opened');
+						$this.removeClass(self.preSelectedClass);
 					} else {
 						var dataFirstTab = $this.data('first-tab');
 						var $firstPanel = $this.find(dataFirstTab);
@@ -109,7 +126,9 @@ var bb = bb ? bb : {};
 					return;
 				}
 
-				var $activePanel = $(hashVal);
+				var $activePanel = $('*[data-id="' + hashVal + '"]');
+				$activePanel.attr('id', hashVal);
+
 				var $activeTab = $('a[href="' + hashVal + '"]');
 				var $tabParent = $activePanel.closest(self.tabsSelector);
 				var $panels = $tabParent.find(self.panelSelector);
