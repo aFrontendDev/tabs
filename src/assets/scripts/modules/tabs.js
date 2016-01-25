@@ -102,6 +102,7 @@ var bb = bb ? bb : {};
 					var $panels = $this.find(self.panelSelector);
 					var $tab = $this.find(self.tabSelector);
 					$panels.removeClass(self.activeClass);
+					$panels.attr('aria-hidden', 'true');
 					$tab.removeClass(self.activeClass);
 
 					if ($this.hasClass(self.preSelectedClass)) {
@@ -114,6 +115,7 @@ var bb = bb ? bb : {};
 						var $firstTab = $this.find('a[href="' + dataFirstTab + '"]');
 
 						$firstPanel.addClass(self.activeClass);
+						$firstPanel.attr('aria-hidden', 'false');
 						$firstTab.addClass(self.activeClass);
 					}
 				});
@@ -135,8 +137,10 @@ var bb = bb ? bb : {};
 				var $tab = $tabParent.find(self.tabSelector);
 
 				$panels.removeClass(self.activeClass);
+				$panels.attr('aria-hidden', 'true');
 				$tab.removeClass(self.activeClass);
 				$activePanel.addClass(self.activeClass);
+				$activePanel.attr('aria-hidden', 'false');
 				$activeTab.addClass(self.activeClass);
 			}
 		}
