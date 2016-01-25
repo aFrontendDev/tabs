@@ -23,6 +23,7 @@ var bb = bb ? bb : {};
 			// Classes
 			activeClass: 'active',
 			// Misc
+			hashVal: '',
 			/**
 			 * Initialises tab module. Caches jQuery DOM objects.
 			 * @function init
@@ -41,13 +42,21 @@ var bb = bb ? bb : {};
 				self.getFirstTab();
 
 				// check for hash value in url and if exists pass to tab open func
-				var hashVal = window.location.hash;
-				if (hashVal && hashVal.length > 0) {
-					self.tabOpen(hashVal);
+				self.hashVal = window.location.hash;
+				if (self.hashVal && self.hashVal.length > 0) {
+					self.tabOpen(self.hashVal);
 				} else {
 					console.log('No active panel');
 					self.tabOpen();
 				}
+
+				window.addEventListener('hashchange', function() {
+					console.log('hash changed');
+					self.hashVal = window.location.hash;
+					if (self.hashVal && self.hashVal.length > 0) {
+						self.tabUpdate(self.hashVal);
+					}
+				});
 			},
 			getFirstTab: function() {
 				var self = this;
@@ -81,6 +90,7 @@ var bb = bb ? bb : {};
 					if ($this.hasClass('opened')) {
 						$activePanel.addClass(self.activeClass);
 						$activeTab.addClass(self.activeClass);
+						$this.removeClass('opened');
 					} else {
 						var dataFirstTab = $this.data('first-tab');
 						var $firstPanel = $this.find(dataFirstTab);
@@ -90,6 +100,25 @@ var bb = bb ? bb : {};
 						$firstTab.addClass(self.activeClass);
 					}
 				});
+			},
+			tabUpdate: function(hashVal) {
+				var self = this;
+
+				if (!hashVal) {
+					console.log('tab update - no hash val');
+					return;
+				}
+
+				var $activePanel = $(hashVal);
+				var $activeTab = $('a[href="' + hashVal + '"]');
+				var $tabParent = $activePanel.closest(self.tabsSelector);
+				var $panels = $tabParent.find(self.panelSelector);
+				var $tab = $tabParent.find(self.tabSelector);
+
+				$panels.removeClass(self.activeClass);
+				$tab.removeClass(self.activeClass);
+				$activePanel.addClass(self.activeClass);
+				$activeTab.addClass(self.activeClass);
 			}
 		}
 	});
